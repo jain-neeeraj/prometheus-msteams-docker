@@ -1,0 +1,12 @@
+groups:
+- name: targets
+  rules:
+  - alert: MI_service_down
+    expr: service_status == 0
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "{{$labels.name}} service is unhealthy"
+      description: "Service is down on {{ $labels.env }}. Please check the health"
+
